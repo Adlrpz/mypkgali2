@@ -81,5 +81,5 @@ plot(resultado$rt_new_all, resultado$rr_new_all, type = "l")
 }
 \seealso{
 \code{\link{read_ann_file}} para la lectura inicial de archivos .ANN,
-y \code{\link{signal::interp1}} para interpolación de tipo pchip.
+y \code{\link[signal]{interp1}} para interpolación de tipo pchip.
 }

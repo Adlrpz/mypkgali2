@@ -3,3 +3,5 @@
 export(clean_rr_segments)
 export(read_ann_file)
 importFrom(signal,interp1)
+importFrom(stats,median)
+importFrom(stats,sd)

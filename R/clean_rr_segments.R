@@ -45,7 +45,7 @@
 #' Necesita el paquete \pkg{signal} para la función \code{interp1()}.
 #'
 #' @seealso \code{\link{read_ann_file}} para la lectura inicial de archivos .ANN,
-#' y \code{\link{signal::interp1}} para interpolación de tipo pchip.
+#' y \code{\link[signal]{interp1}} para interpolación de tipo pchip.
 #'
 #' @examples
 #' \dontrun{
@@ -61,6 +61,7 @@
 #' }
 #'
 #' @importFrom signal interp1
+#' @importFrom stats median sd
 #' @export
 clean_rr_segments <- function(rr, rt, ann, p, w, fs, figsavefullpath = NULL) {
   numd <- 10        # Número mínimo de datos válidos alrededor de un hueco para poder interpolar
