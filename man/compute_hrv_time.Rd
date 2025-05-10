@@ -35,7 +35,7 @@ La función \code{compute_hrv_time()} permite calcular las métricas estándar d
 \section{Detalles}{
 
 Entre las métricas que se calculan en el análisis encontramos:
-#' \enumerate{
+\enumerate{
 \item Cálculo de las diferencias sucesivas entre intervalos RR (\code{diff(rr_ms)}).
 \item Estimación de RMSSD (raíz del promedio de diferencias cuadradas).
 \item Proporciones pNN50 y pNN20 (porcentaje de diferencias mayores a 50 o 20 ms).

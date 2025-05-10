@@ -10,7 +10,7 @@
 #'
 #' @section Detalles:
 #' Entre las métricas que se calculan en el análisis encontramos:
-#' #' \enumerate{
+#' \enumerate{
 #'   \item Cálculo de las diferencias sucesivas entre intervalos RR (`diff(rr_ms)`).
 #'   \item Estimación de RMSSD (raíz del promedio de diferencias cuadradas).
 #'   \item Proporciones pNN50 y pNN20 (porcentaje de diferencias mayores a 50 o 20 ms).
