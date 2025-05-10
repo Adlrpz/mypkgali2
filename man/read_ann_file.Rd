@@ -23,20 +23,24 @@ Una lista con:
 La función \code{read_ann_file()} nos permite leer archivos binarios \code{.ANN} que contienen las anotaciones limpias de latidos cardíacos procedentes de señales de electocardiogramas o ECG.
 Los archivos presentan la siguiente estructura: comienzan con 12 bytes de cabecera, terminan con 14 bytes de cierre, y contienen bloques intermedios de 8 bytes por cada latido.
 }
-\details{
-Cada bloque de 8 bytes codifica:
-\itemize{
-\item El intervalo RR, es decir, tiempo entre latidos consecutivos, en muestras (típicamente a 1000 Hz).
-\item El tipo de latido, codificado en formato ASCII.
-}
+\section{Objetivo principal}{
 
-La función realiza las siguientes operaciones:
+#' La función realiza las siguientes operaciones:
 \enumerate{
 \item Lee el archivo binario completo.
 \item Elimina los bytes de cabecera y pie.
 \item Extrae los bloques de 8 bytes por latido.
 \item Calcula los intervalos RR acumulados (RR_time).
 \item Interpreta los códigos de tipo de latido (ANNtype) según su valor ASCII.
+}
+}
+
+\section{Detalles}{
+
+Cada bloque de 8 bytes codifica:
+\itemize{
+\item El intervalo RR, es decir, tiempo entre latidos consecutivos, en muestras (típicamente a 1000 Hz).
+\item El tipo de latido, codificado en formato ASCII.
 }
 
 Algunos ejemplos de tipo de latido son:
@@ -50,6 +54,7 @@ Algunos ejemplos de tipo de latido son:
 (y otros)
 }
 }
+
 \examples{
 \dontrun{
 # Suponiendo que tienes un archivo ANN en "datos/Thoth_20230208220000s.ANN"
@@ -62,4 +67,7 @@ head(resultado$RR, 10)
 head(resultado$ANNtype, 10)
 }
 
+}
+\seealso{
+\code{\link{clean_rr_segments}} para limpieza e interpolación de la señal.
 }

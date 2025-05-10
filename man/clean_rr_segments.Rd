@@ -45,10 +45,8 @@ El objetivo principal de la función es reconstruir una señal continua y fisiol
 \item \strong{Segmentación de tramos válidos} y eliminación de huecos prolongados (≥ 5 s).
 \item \strong{Interpolación de huecos} mediante vecinos válidos, usando interpolación cúbica tipo PCHIP.
 }
-}
 
-\section{Reglas de limpieza aplicadas}{
-
+#' @section Detalles:
 \itemize{
 \item Se excluyen anotaciones no latido (ej. '+', '|', 's').
 \item Se eliminan latidos ectópicos (códigos distintos de 78) y valores fuera de rango fisiológico.

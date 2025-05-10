@@ -1,5 +1,7 @@
 #' Limpieza y segmentación de intervalos RR de registros ECG
 #'
+#'
+#' @description
 #' La función `clean_rr_segments()` permite procesar la señal de intervalos RR que se ha obtenido a partir
 #' de los registros ECG (electrocardiogramas) para su posterior análisis, eliminando artefactos, latidos ectópicos,
 #' valores atípicos y tramos de señal de baja calidad
@@ -14,6 +16,19 @@
 #'   \item \strong{Segmentación de tramos válidos} y eliminación de huecos prolongados (≥ 5 s).
 #'   \item \strong{Interpolación de huecos} mediante vecinos válidos, usando interpolación cúbica tipo PCHIP.
 #' }
+#'
+#'#' @section Detalles:
+#' \itemize{
+#'   \item Se excluyen anotaciones no latido (ej. '+', '|', 's').
+#'   \item Se eliminan latidos ectópicos (códigos distintos de 78) y valores fuera de rango fisiológico.
+#'   \item Se detectan outliers por ventana deslizante con umbral estadístico.
+#'   \item Se invalidan épocas completas si hay menos de 15 latidos válidos, más de 10\% de ruido,
+#'         o menos del 90\% del tiempo útil.
+#'   \item Se segmenta la señal en tramos continuos válidos, excluyendo huecos ≥ 5 segundos.
+#'   \item Se interpolan huecos breves usando interpolación cúbica PCHIP (`signal::interp1()`).
+#' }
+#'
+#'
 #'
 #'
 #' @param rr Vector numérico. Son los intervalos RR en muestras (tiempo entre latidos consecutivos).
@@ -30,16 +45,7 @@
 #'   \item{rt_new_all}{Vector numérico. Tiempos correspondientes a cada intervalo RR en la señal limpia.}
 #'   \item{seg_new}{Matriz numérica. Cada fila representa el índice de inicio y fin de un segmento válido.}
 #' }
-#' @section Reglas de limpieza aplicadas:
-#' \itemize{
-#'   \item Se excluyen anotaciones no latido (ej. '+', '|', 's').
-#'   \item Se eliminan latidos ectópicos (códigos distintos de 78) y valores fuera de rango fisiológico.
-#'   \item Se detectan outliers por ventana deslizante con umbral estadístico.
-#'   \item Se invalidan épocas completas si hay menos de 15 latidos válidos, más de 10\% de ruido,
-#'         o menos del 90\% del tiempo útil.
-#'   \item Se segmenta la señal en tramos continuos válidos, excluyendo huecos ≥ 5 segundos.
-#'   \item Se interpolan huecos breves usando interpolación cúbica PCHIP (`signal::interp1()`).
-#' }
+
 #'
 #' @section Requisitos:
 #' Necesita el paquete \pkg{signal} para la función \code{interp1()}.

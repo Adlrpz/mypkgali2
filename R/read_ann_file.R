@@ -1,15 +1,11 @@
 #' Leer y decodificar archivos .ANN de ECG
 #'
+#' @description
 #' La función `read_ann_file()` nos permite leer archivos binarios `.ANN` que contienen las anotaciones limpias de latidos cardíacos procedentes de señales de electocardiogramas o ECG.
 #' Los archivos presentan la siguiente estructura: comienzan con 12 bytes de cabecera, terminan con 14 bytes de cierre, y contienen bloques intermedios de 8 bytes por cada latido.
 #'
-#' Cada bloque de 8 bytes codifica:
-#' \itemize{
-#'   \item El intervalo RR, es decir, tiempo entre latidos consecutivos, en muestras (típicamente a 1000 Hz).
-#'   \item El tipo de latido, codificado en formato ASCII.
-#' }
-#'
-#' La función realiza las siguientes operaciones:
+#' @section Objetivo principal:
+#'#' La función realiza las siguientes operaciones:
 #' \enumerate{
 #'   \item Lee el archivo binario completo.
 #'   \item Elimina los bytes de cabecera y pie.
@@ -18,6 +14,15 @@
 #'   \item Interpreta los códigos de tipo de latido (ANNtype) según su valor ASCII.
 #' }
 #'
+#'
+#' @section Detalles:
+#' Cada bloque de 8 bytes codifica:
+#' \itemize{
+#'   \item El intervalo RR, es decir, tiempo entre latidos consecutivos, en muestras (típicamente a 1000 Hz).
+#'   \item El tipo de latido, codificado en formato ASCII.
+#' }
+#'
+
 #' Algunos ejemplos de tipo de latido son:
 #' \tabular{llll}{
 #'   \strong{Código ASCII} \tab \strong{Símbolo} \tab \strong{Significado clínico} \tab \strong{Tratamiento} \cr
@@ -38,6 +43,9 @@
 #'   \item{RR_time}{Vector acumulado del tiempo total transcurrido desde el inicio del registro.}
 #'   \item{ANNtype}{Vector de caracteres con el tipo de latido interpretado (por ejemplo, 'N', 'V', '*').}
 #' }
+#'
+#'
+#' @seealso \code{\link{clean_rr_segments}} para limpieza e interpolación de la señal.
 #'
 #' @examples
 #' \dontrun{
