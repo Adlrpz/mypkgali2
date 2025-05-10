@@ -54,6 +54,7 @@
 #' }
 #'
 #' @importFrom signal interp1 conv
+#' @importFrom stats fft
 #' @export
 compute_hrv_frecuence <- function(t1, b1, resample_index = 125, fs = 1000) {
 
